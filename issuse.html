@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="lodash.min.js"></script>
+    <script src="commonmark.js"></script>
+	<script>
+        var reader = new commonmark.Parser();
+        var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+
+        var render = function(parsed) {
+            if (parsed === undefined) {
+                return;
+            }
+            var startTime = new Date().getTime();
+            var result = writer.render(parsed);
+            document.getElementById("content").innerHTML=result;
+        };
+        var parseAndRender = function(text) {
+            var parsed = reader.parse(text);
+            render(parsed);
+        };
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        function showMarkdown(){
+            var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+            var xmlhttp;
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    var bb = JSON.parse(xmlhttp.responseText)
+                    console.log(bb.body)
+                    parseAndRender(bb.body)
+                    loadMermaidOnNeed()
+                }
+            }
+            xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues/"+getQueryVariable("iid"),true);
+            xmlhttp.send();
+        }
+        showMarkdown()
+    </script>
+
+</head>
+<body>
+	 <div class="container" style="margin-top:30px">
+	<div id="content"></div>
+	</div> 
+
+</body>
+<script>
+    const loadScript = (url, onloadFunction) => {
+      var newScript = document.createElement("script");
+      newScript.onerror =  (oError) => {
+        throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+      };
+      if (onloadFunction) { newScript.onload = onloadFunction; }
+      document.head.insertAdjacentElement('beforeend', newScript);
+      newScript.src = url;
+    }
+  
+    // mermaid loader by ttys3.dev
+    const loadMermaidOnNeed = () => {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', () => {
+          document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #ffffff !important; }</style>`);
+          console.log("mermaid init done");
+          mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+          window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+        })
+    }
+  </script>
+</html>
