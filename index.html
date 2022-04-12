@@ -7,24 +7,9 @@
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script> 
  <head>
- <title>文字卡片效果</title>
+ <title>GithuBlog</title>
 </head>
 <script>
-    // var reader = new commonmark.Parser();
-    // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
-
-    // var render = function(parsed) {
-    //     if (parsed === undefined) {
-    //         return;
-    //     }
-    //     var startTime = new Date().getTime();
-    //     var result = writer.render(parsed);
-    //     document.getElementById("content").innerHTML=result;
-    // };
-    // var parseAndRender = function(text) {
-    //     var parsed = reader.parse(text);
-    //     render(parsed);
-    // };
     function getQueryVariable(variable)
     {
         var query = window.location.search.substring(1);
@@ -53,7 +38,7 @@
                     var iss = document.createElement("div")
                     iss.className = "card row"
                     // iss.setAttribute("onclick","window.open('"+"https://taontech.top/issuse.html?iid="+issuse.number+"')")
-                    iss.setAttribute("onclick","window.open('"+"http://127.0.0.1:8080/issuse.html?iid="+issuse.number+"')")
+                    iss.setAttribute("onclick","window.open('"+"issuse.html?iid="+issuse.number+"')")
 
                     var titlediv = document.createElement("div")
                     titlediv.className = "header"
@@ -66,7 +51,12 @@
                     // titlediv.setAttribute("href",issuse.html_url)
                     iss.appendChild(titlediv)
                     
-
+                    var date = document.createElement("div")
+                    date.className = "container"
+                    var datestring = document.createElement("p")
+                    datestring.innerText = issuse.created_at
+                    date.appendChild(datestring)
+                    iss.appendChild(date)
                     container.appendChild(iss)
                 });
             }
@@ -78,26 +68,26 @@
 </script>
  <style>
     div.card {
-        width: 650px;
-        padding: 10px;
+        width: 90%;
+        padding: 1%;
         text-align: center;
-        border-radius: .45rem!important;
-        border: 2px solid #dee2e6!important;
-        box-shadow: 0 .325rem .55rem rgba(0,0,0,.275)!important;
+        border-radius: .45rem;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
         background-color: #ffffff;
     }
     div.header {
-        border: 2px solid #dee2e6;
-        box-shadow: 0 .325rem .55rem rgba(0,0,0,.275)!important;
-        background-color: #003e58!important;
-        color: rgb(10, 120, 76);
+        /* border: 2px solid #dee2e6; */
+        /* box-shadow: 0 .325rem .55rem rgba(0,0,0,.275)!important; */
+        /* background-color: #c5e6f4!important; */
+        /* color: rgb(10, 120, 76); */
         padding: 10px;
-        text-align: center;
-        font-size: 40px;
+        text-align: left;
+        font-size: 20px;
     }
     div.container {
-        padding: 10px;
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+        text-align: left;
+        color:#b9bcbf
     }
     .row {
         margin:auto ;
@@ -108,8 +98,6 @@
 </style>
 
 <body>
-<h2>Taon的blog尝试</h2>
-<p>The way we win matters!</p>
 
 <div class="blogContainer" id="blog">​
     <!-- <div class="card row">
