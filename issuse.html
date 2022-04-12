@@ -9,6 +9,20 @@
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script>
     <script src="commonmark.js"></script>
+    <style>
+        div.titlestyle {
+            margin: auto;
+            width: 99%;
+            padding: 1%;
+            text-align: center;
+            color: rgb(79, 81, 86);
+            border-radius: .45rem;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
+            background-color: #ffffff;
+            font-size: 30px;
+        }
+    </style>
 	<script>
         var reader = new commonmark.Parser();
         var writer = new commonmark.HtmlRenderer({ sourcepos: true });
@@ -46,6 +60,7 @@
                     var bb = JSON.parse(xmlhttp.responseText)
                     console.log(bb.body)
                     var title = document.getElementById("title")
+                    title.className = "titlestyle"
                     title.textContent = bb.title
                     parseAndRender(bb.body)
                     loadMermaidOnNeed()
@@ -56,14 +71,20 @@
         }
         showMarkdown()
     </script>
-<h1 id="title"> 我的博客 </h1>
+
 </head>
 <body>
+    <div id="title" padding="10px" margin="auto" > 
+        <p>我的博客</p> 
+    </div>
 	<div class="container" style="margin-top:30px">
 	<div id="content"></div>
 	</div> 
-
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
 </body>
+
 <script>
     const loadScript = (url, onloadFunction) => {
       var newScript = document.createElement("script");
@@ -84,5 +105,19 @@
           window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
         })
     }
+
+    var gitalk = new Gitalk({
+        id: '2022-04-11 14:23:25 \x2b0800 CST',
+        title: 'Add Gitalk',
+        clientID: '9f5ddcf31c2a9a90922c',
+        clientSecret: 'c7a35e1825250c902a7e67e17382017aa30a8a5e',
+        repo: 'www',
+        owner: 'taontech',
+        admin: ['taontech'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+
+    gitalk.render('gitalk-container')
   </script>
 </html>
