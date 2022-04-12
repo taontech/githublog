@@ -43,6 +43,8 @@
                 {
                     var bb = JSON.parse(xmlhttp.responseText)
                     console.log(bb.body)
+                    var title = document.getElementById("title")
+                    title.textContent = bb.title
                     parseAndRender(bb.body)
                     loadMermaidOnNeed()
                 }
@@ -52,10 +54,10 @@
         }
         showMarkdown()
     </script>
-
+<h1 id="title"> 我的博客 </h1>
 </head>
 <body>
-	 <div class="container" style="margin-top:30px">
+	<div class="container" style="margin-top:30px">
 	<div id="content"></div>
 	</div> 
 
