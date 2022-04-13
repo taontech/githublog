@@ -10,6 +10,7 @@
  <title>GithuBlog</title>
 </head>
 <script>
+    var config;
     function getQueryVariable(variable)
     {
         var query = window.location.search.substring(1);
@@ -20,7 +21,35 @@
         }
         return(false);
     }
-    function showMarkdown(){
+
+    function createxmlHttpRequest() {
+        if(window.ActiveXObject) {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        } else if(window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+    }
+
+    function doGetJSON(url,fun) {
+        createxmlHttpRequest();
+        xmlHttp.open("GET", url);
+        xmlHttp.send(null);
+        xmlHttp.onreadystatechange = function() {
+            if((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+                fun&fun(JSON.parse(xmlHttp.responseText));
+            }
+        }
+    }
+
+    var configJSON = 'config.json'
+    //编写url位置
+    doGetJSON(configJSON,function(data){
+        config = data
+        loadIssuses()
+    })
+
+
+    function loadIssuses(){
         // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
@@ -69,10 +98,10 @@
                 });
             }
         }
-        xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues",true);
+        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo + "/"+"issues",true);
         xmlhttp.send();
     }
-    showMarkdown()
+    
 </script>
  <style>
     div.card {
