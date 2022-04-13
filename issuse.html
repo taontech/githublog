@@ -14,17 +14,45 @@
 
     <style>
         div.titlestyle {
-            margin: auto;
-            width: 98%;
+            /* margin: auto; */
+            width: 99%;
             padding: 1%;
-            text-align: center;
-            color: rgb(79, 81, 86);
-            border-radius: .45rem;
-            border: 1px solid #dee2e6;
-            box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
-            background-color: #ffffff;
-            font-size: 30px;
+            text-align: left;
+            color: rgb(77, 78, 79);
+            /* border-radius: .45rem;
+            border: 1px solid #dee2e6; */
+            /* box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
+            background-color: #368869; */
+            font-size: 20px;
         }
+        .img-title {
+        display: inline;
+        margin: auto;
+        padding: auto;
+        width: 50px;
+    }
+    .ownerline {
+        align-items: center;
+        background-color: lightslategray;
+        height: 50px;
+        overflow: hidden;
+        display: inline-flex;
+        width: 99%;
+        padding: 10px;
+        padding-left: 0px;
+    }
+    .ownerName {
+        color: #ffffff;
+        font-size: 25px;
+        background-color: #70a476;
+        padding-left: 10px;
+        padding-right: 600px;
+        padding-top: 5px;
+    }
+    span {
+        float: left;
+        height: 50px;
+    }
     </style>
     <script>
         const loadScript = (url, onloadFunction) => {
@@ -114,6 +142,14 @@
                 {
                     var bb = JSON.parse(xmlhttp.responseText)
                     console.log(bb.body)
+
+                    let img = document.getElementById("headImg")
+                    img.setAttribute("src",bb.user.avatar_url)
+                    img.className = "img-title"
+                    let name = document.getElementById("owner")
+                    name.innerText = bb.user.login
+                    name.setAttribute("display","inline-block")
+
                     var title = document.getElementById("title")
                     title.className = "titlestyle"
                     title.textContent = bb.title
@@ -147,12 +183,20 @@
 
 </head>
 <body style="max-width: 1024px;margin: 0 auto; padding: 10px">
+    <div class="ownerline" >
+        <div>
+            <img id="headImg"></img>
+        </div>
+        
+         <span class="ownerName" id="owner"></span>
+    </div>
     <div id="title" padding="10px" margin="auto" > 
-        <p>我的博客</p> 
+        <p>GithuBlog</p> 
     </div>
 	<div class="container" style="margin-top:30px; max-width: 1024px;">
-	<div id="content" ></div>
+	    <div id="content" ></div>
 	</div> 
+    <a href="index.html"> Home </a>
     <div id="gitalk-container"></div>
 </body>
 
