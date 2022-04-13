@@ -74,6 +74,7 @@
     //编写url位置
     doGetJSON(configJSON,function(data){
         config = data
+        showMarkdown()
     })
 
     </script>
@@ -124,11 +125,11 @@
                         id: bb.id,
                         number: bb.number,
                         title: bb.title,
-                        clientID: 'ce05afa47f84a85be6ad',
-                        clientSecret: '3dba78926e6ae22493a66851270dd2955c754b5f',
-                        repo: "githublog",
-                        owner: "taontech",
-                        admin: ["taontech"],
+                        clientID: config.clientId,
+                        clientSecret: config.clientSecret,
+                        repo: config.repo,
+                        owner: config.owner,
+                        admin: [config.owner],
                         body: decodeURI(location.href)
                     });
                     gitalk.render('gitalk-container')
@@ -136,12 +137,12 @@
                     // gitalk.render('gitalk-container')
                 }
             }
-            // xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
-            xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues/"+getQueryVariable("iid"),true);
+             xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
+            //xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues/"+getQueryVariable("iid"),true);
 
             xmlhttp.send();
         }
-    showMarkdown()
+    
     </script>
 
 </head>
