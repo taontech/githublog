@@ -48,7 +48,7 @@
     //编写url位置
     doGetJSON(configJSON,function(data){
         config = data
-        loadIssuses()
+        showMarkdown()
     })
 
     </script>
@@ -114,7 +114,7 @@
             xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
             xmlhttp.send();
         }
-        showMarkdown()
+       
     </script>
 
 </head>
