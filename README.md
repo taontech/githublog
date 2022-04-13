@@ -1,6 +1,7 @@
 # githublog
 A super small blog repo.
 You can use github's issuse to present your blog posts in real time without having to repackage them online. Each of your blogs is visible in real time, and using gitalk, other users can comment and like at any time.
+[Demo](https://taontech.top)
 ## install
 clone all code to your webserver root
 ```
