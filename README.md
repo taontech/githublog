@@ -7,15 +7,21 @@ Demo:
 - **github pages** [taontech.github.io](https://taontech.github.io/githublog/)
 
 ## Install
-### private web server
+#### private web server
 clone all code to your webserver root
 ```
 git clone https://github.com/taontech/githublog.git your-webserver-path
 ```
-### install with Github pages
+#### install with Github pages
 fork this repo.
 
-### modify config
+## settings
+1. After fork repo, remember to **open issues**, the default fork repo is to close issuse.
+2. Write the first issuse
+3. Create a new app in **"setting -> developer settings -> OAuth Apps"**, and write the domain name: "https://**yourname**.github.io", generate a new **client secret**.
+4. Open the repo **"pages"**, select the ***main*** branch and any of the **themes**.
+
+## modify config
 modify **config.json** file
 ```json
 {
@@ -36,9 +42,10 @@ Example:
     "clientSecret" : "ca53b8ba928064a6ff64ef1fde762196625ef90a"
 }
 ```
-
-**TODO:**
+## Then
+    Enjoy!
+# **TODO:**
 - themes
 - highlight
 
-Enjoy!
+
