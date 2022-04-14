@@ -68,6 +68,7 @@
                 let name = document.getElementById("owner")
                 name.innerText = bb[0].user.login
                 name.setAttribute("display","inline-block")
+                // name.setAttribute("href",bb[0].repository_url)
                 
                 bb.forEach(issuse => {
                     var container = document.getElementById("blog")
@@ -157,7 +158,7 @@
     }
     .ownerline {
         align-items: center;
-        background-color: lightslategray;
+        background-color: rgb(255, 255, 255);
         height: 50px;
         overflow: hidden;
         display: inline-flex;
@@ -170,8 +171,9 @@
         font-size: 25px;
         background-color: #70a476;
         padding-left: 10px;
-        padding-right: 600px;
+        padding-right: 10px;
         padding-top: 5px;
+        width: 50%;
     }
     span {
         float: left;
@@ -186,9 +188,13 @@
         </div>
         
          <span class="ownerName" id="owner"></span>
+         <a href="https://github.com/taontech/githublog" style="color: rgb(2, 131, 5);
+         padding: 20px;
+         font-weight: bold;font-size: 25px;"> Githublog </a>
     </div>
 
-<div class="blogContainer" id="blog">​
-</div>
+    <div class="blogContainer" id="blog">​
+    </div>
+
 </body>
 </html>
