@@ -8,6 +8,7 @@
     <script src="lodash.min.js"></script> 
  <head>
  <title>GithuBlog</title>
+
 </head>
 <script>
     var config;
@@ -61,6 +62,12 @@
                 console.log(bb)
                 // parseAndRender(bb.body)
                 // loadMermaidOnNeed()
+                let img = document.getElementById("headImg")
+                img.setAttribute("src",bb[0].user.avatar_url)
+                img.className = "img-title"
+                let name = document.getElementById("owner")
+                name.innerText = bb[0].user.login
+                name.setAttribute("display","inline-block")
                 
                 bb.forEach(issuse => {
                     var container = document.getElementById("blog")
@@ -108,10 +115,10 @@
         width: 90%;
         padding: 1%;
         text-align: center;
-        border-radius: .45rem;
+        /* border-radius: .45rem;
         border: 1px solid #dee2e6;
-        box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
-        background-color: #ffffff;
+        box-shadow: 0 .325rem .55rem rgba(0,0,0,.275); */
+        /* background-color: #dce8f0; */
     }
     div.header {
         /* border: 2px solid #dee2e6; */
@@ -142,28 +149,46 @@
     .blogContainer {
         padding:10px;
     }
+    .img-title {
+        display: inline;
+        margin: auto;
+        padding: auto;
+        width: 50px;
+    }
+    .ownerline {
+        align-items: center;
+        background-color: lightslategray;
+        height: 50px;
+        overflow: hidden;
+        display: inline-flex;
+        width: 100%;
+        padding: 10px;
+        padding-left: 0px;
+    }
+    .ownerName {
+        color: #ffffff;
+        font-size: 25px;
+        background-color: #70a476;
+        padding-left: 10px;
+        padding-right: 600px;
+        padding-top: 5px;
+    }
+    span {
+        float: left;
+        height: 50px;
+    }
 </style>
 
 <body>
-
-<div class="blogContainer" id="blog">​
-    <!-- <div class="card row">
-        <div class="header">
-            <h1>123</h1>
+    <div class="ownerline" >
+        <div>
+            <img id="headImg"></img>
         </div>
-        <div class="container">
-            <p>January 1, 2016</p>
-        </div>
+        
+         <span class="ownerName" id="owner"></span>
     </div>
 
-    <div class="card row">
-        <div class="header">
-            <h1>123456</h1>
-        </div>
-        <div class="container">
-            <p>January 1, 2016</p>
-        </div>
-    </div> -->
+<div class="blogContainer" id="blog">​
 </div>
 </body>
 </html>
