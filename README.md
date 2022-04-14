@@ -2,7 +2,9 @@
 A super small blog repo.
 You can use github's issuse to present your blog posts in real time without having to repackage them online. Each of your blogs is visible in real time, and suppurt [***gitalk***](https://github.com/gitalk/gitalk) and [***mermaid***](https://github.com/mermaid-js/mermaid), other users can comment and like at any time.
 
-Demo: [taontech.top](https://taontech.top)
+Demo: 
+- **my server** [taontech.top](https://taontech.top)
+- **github pages** [taontech.github.io](https://taontech.github.io/githublog/)
 
 ## Install
 ### private web server
