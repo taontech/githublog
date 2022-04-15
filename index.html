@@ -45,7 +45,7 @@
     var configJSON = 'config.json'
     //编写url位置
     doGetJSON(configJSON,function(data){
-        config = data
+        config = data[document.domain]
         loadIssuses()
     })
 
