@@ -9,8 +9,8 @@
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script>
     <script src="commonmark.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
+    <script src="gitalk.min.js" crossorigin="anonymous"></script>
 
     <style>
         div.titlestyle {
@@ -68,7 +68,7 @@
       
         // mermaid loader by ttys3.dev
         const loadMermaidOnNeed = () => {
-            loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', () => {
+            loadScript('mermaid.min.js', () => {
               document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #ffffff !important; }</style>`);
               console.log("mermaid init done");
               mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
