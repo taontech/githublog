@@ -9837,9 +9837,9 @@
         if (entering) {
             if (this.disableTags === 0) {
                 if (this.options.safe && potentiallyUnsafe(node.destination)) {
-                    this.lit('<img src="" width=100%; alt=" ');
+                    this.lit('<img src="" max-width=100% alt=" ');
                 } else {
-                    this.lit('<img src="' + this.esc(node.destination) + '" width=100%; alt="');
+                    this.lit('<img src="' + this.esc(node.destination) + '" max-width=100% alt="');
                 }
             }
             this.disableTags += 1;
