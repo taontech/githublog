@@ -24,24 +24,24 @@ fork this repo.
 ## modify config
 modify **config.json** file
 ```json
-"127.0.0.1"={
+"127.0.0.1":{
     "owner" : "your Github count name",
     "repo" : "your repo which hold the issuses",
     "clientId" : "github client id",
     "clientSecret" : "github clentSecret"
-    "theme"="default"
+    "theme":"default"
 }
 ```
  > **Note::** When you add the Oauth App to obtain the required secretkey, you need to add the correct domain name, which is the domain name that will eventually provide the webservice.
 
 Example: 
 ```json
-"taontech.top" = {
+"taontech.top" :{
     "owner" : "taontech",
     "repo" : "githublog",
     "clientId" : "16a063cf308dce2e4ac0",
     "clientSecret" : "ca53b8ba928064a6ff64ef1fde762196625ef90a"
-    "theme"="forest"
+    "theme":"forest"
 }
 ```
 
