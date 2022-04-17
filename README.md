@@ -4,10 +4,11 @@ You can use github's issuse to present your blog posts in real time without havi
 
 Demo: 
 - **my server** [taontech.top](https://taontech.top)
-    <img width="1078" alt="截屏2022-04-17 22 19 32" src="https://user-images.githubusercontent.com/990488/163718603-cc0e0d9c-8444-4704-b76b-5052a4edf1d8.png">
+    <img width="512" alt="截屏2022-04-17 22 19 32" src="https://user-images.githubusercontent.com/990488/163718706-b21081be-6207-44ac-b26c-a8c5c4e125ac.png">
 
 - **github pages** [taontech.github.io](https://taontech.github.io/githublog/)
-    <img width="1078" alt="截屏2022-04-17 22 19 55" src="https://user-images.githubusercontent.com/990488/163718616-6fb54b58-e363-47f4-b26d-17e4f147332b.png">
+   <img width="512" alt="截屏2022-04-17 22 19 55" src="https://user-images.githubusercontent.com/990488/163718707-ca7b09a0-b142-4d5d-bc56-950aa9130440.png">
+
 
 ## Install
 #### private web server
