@@ -18,6 +18,10 @@ div.container {
     text-align: left;
     color:#cccecc
 }
+.iss-container {
+    text-align: left;
+    color:#393a39
+}
 div.preview {
     padding: 10px;
     /* margin: auto; */
@@ -75,4 +79,9 @@ div.preview {
     max-width: 1024px;
     margin: 0 auto; 
     padding: 10px;
+}
+.titlestyle {
+    text-align: center;
+    font-size: 20px;
+    color: darkslategrey;
 }
