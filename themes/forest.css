@@ -76,3 +76,8 @@ div.preview {
     margin: 0 auto; 
     padding: 10px;
 }
+.titlestyle {
+    text-align: center;
+    font-size: 20px;
+    color: darkslategrey;
+}
