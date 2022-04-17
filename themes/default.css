@@ -3,12 +3,13 @@ div.card {
     width: 90%;
     /* padding: 1%; */
     text-align: center;
-    border: 1px solid #dee2e6;
+    border: 1px solid #ffffff;
+    border-bottom-color: rgb(79, 197, 0);
     background-color: #ffffff;
 }
 div.header {
     color: rgb(10, 120, 76);
-    width: 90%;
+    width: 100%;
     padding: 10px;
     text-align: left;
     font-size: 20px;
@@ -46,7 +47,7 @@ div.preview {
     height: 80px;
     overflow: hidden;
     display: inline-flex;
-    width: 99%;
+    width: 100%;
     padding: 10px;
     padding-left: 5%;
 }
@@ -58,7 +59,7 @@ div.preview {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
-    width: 30%;
+    /* width: 30%; */
 }
 span {
     float: left;
