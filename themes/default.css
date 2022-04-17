@@ -1,0 +1,72 @@
+
+div.card {
+    width: 90%;
+    padding: 1%;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+}
+div.header {
+    color: rgb(10, 120, 76);
+    width: 90%;
+    padding: 10px;
+    text-align: left;
+    font-size: 20px;
+}
+div.container {
+    text-align: left;
+    color:#cccecc
+}
+div.preview {
+    padding: 10px;
+    /* margin: auto; */
+    margin-top:-10px;
+    margin-bottom: -10px;
+    text-align: left;
+    font-size: 12px;
+    color:#5c5d5c
+}
+
+.row {
+    margin:auto ;
+}
+.blogContainer {
+    padding:10px;
+    background-color: rgb(240, 240, 240);
+}
+.img-title {
+    display: inline;
+    margin: auto;
+    padding: auto;
+    width: 100px;
+}
+.ownerline {
+    align-items: center;
+    background-color: rgb(177, 175, 175);
+    height: 80px;
+    overflow: hidden;
+    display: inline-flex;
+    width: 99%;
+    padding: 10px;
+    padding-left: 5%;
+}
+.ownerName {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #4a4e4a;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 30%;
+}
+span {
+    float: left;
+    height: 50px;
+}
+.githublog_text {
+    color: rgb(77, 79, 77);
+    padding: 20px;
+    font-weight: bold;
+    font-size: 25px;
+}
