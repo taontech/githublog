@@ -1,18 +1,15 @@
 
 div.card {
-    width: 90%;
+    width: 100%;
     /* padding: 1%; */
     text-align: center;
-    /* border-radius: .45rem;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 .325rem .55rem rgba(0,0,0,.275); */
-    /* background-color: #dce8f0; */
+    border: 1px solid #ffffff;
+    border-bottom-color: rgb(79, 197, 0);
+    background-color: #f6f5f5;
 }
 div.header {
-    /* border: 2px solid #dee2e6; */
-    /* box-shadow: 0 .325rem .55rem rgba(0,0,0,.275)!important; */
-    /* background-color: #c5e6f4!important; */
     color: rgb(10, 120, 76);
+    width: 100%;
     padding: 10px;
     text-align: left;
     font-size: 20px;
@@ -28,7 +25,7 @@ div.preview {
     margin-bottom: -10px;
     text-align: left;
     font-size: 12px;
-    color:#e1e7e1
+    color:#5c5d5c
 }
 
 .row {
@@ -36,34 +33,46 @@ div.preview {
 }
 .blogContainer {
     /* padding:10px; */
-    background-color: darkslategrey;
+    background-color: rgb(240, 240, 240);
 }
 .img-title {
     display: inline;
     margin: auto;
     padding: auto;
-    width: 50px;
+    width: 100px;
 }
 .ownerline {
     align-items: center;
-    background-color: rgb(255, 255, 255);
-    height: 50px;
+    background-color: rgb(177, 175, 175);
+    height: 80px;
     overflow: hidden;
     display: inline-flex;
-    width: 99%;
-    padding: 10px;
-    padding-left: 0px;
+    width: 100%;
+    /* padding: 10px; */
+    /* padding-left: 5%; */
 }
 .ownerName {
     color: #ffffff;
     font-size: 25px;
-    background-color: #021b05;
+    font-weight: bold;
+    background-color: #4a4e4a;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
-    width: 30%;
+    /* width: 30%; */
 }
 span {
     float: left;
     height: 50px;
+}
+.githublog_text {
+    color: rgb(77, 79, 77);
+    padding: 20px;
+    font-weight: bold;
+    font-size: 25px;
+}
+.body_issuse {
+    max-width: 1024px;
+    margin: 0 auto; 
+    padding: 10px;
 }

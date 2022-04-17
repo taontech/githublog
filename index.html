@@ -2,7 +2,7 @@
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.6, maximum-scale=1.5, user-scalable=no">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="themes/default.css" rel="stylesheet">
+    <link href="themes/default.css" rel="stylesheet" id="themecss">
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script> 
@@ -46,6 +46,10 @@
     doGetJSON(configJSON,function(data){
         config = data[document.domain]
         loadIssuses()
+        // change css
+        var css = document.getElementById("themecss")
+        css.setAttribute("href","themes/" + config.theme + ".css")
+
     })
 
 
