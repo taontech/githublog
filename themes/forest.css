@@ -61,7 +61,7 @@ div.preview {
     padding-top: 5px;
     /* width: 30%; */
 }
-span {
+.owner-span {
     float: left;
     height: 50px;
 }
@@ -69,7 +69,7 @@ span {
     color: rgb(254, 109, 5);
     padding: 20px;
     font-weight: bold;
-    font-size: 45px;
+    font-size: 125px;
 }
 .body_issuse {
     max-width: 1024px;

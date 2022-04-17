@@ -61,7 +61,7 @@ div.preview {
     padding-top: 5px;
     /* width: 30%; */
 }
-span {
+.owner-span {
     float: left;
     height: 50px;
 }
