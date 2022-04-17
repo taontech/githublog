@@ -71,6 +71,10 @@
                 let name = document.getElementById("owner")
                 name.innerText = bb[0].user.login
                 name.setAttribute("display","inline-block")
+                name.setAttribute("href","https://github.com/"+bb[0].user.login)
+
+                let ghText = document.getElementById("githublogText")
+                ghText.setAttribute("herf","https://github.com/"+bb[0].user.login + "/githublog")
                 // name.setAttribute("href",bb[0].repository_url)
                 
                 bb.forEach(issuse => {
@@ -122,8 +126,8 @@
             <img id="headImg"></img>
         </div>
         
-         <span class="ownerName owner-span" id="owner"></span>
-         <a href="https://github.com/taontech/githublog" class="githublog_text"> Githublog </a>
+         <a class="ownerName owner-span" id="owner"></a>
+         <a href="https://github.com/taontech/githublog" class="githublog_text" id="githublogText"> + New </a>
     </div>
 
     <div class="blogContainer" id="blog">​</div>
