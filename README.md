@@ -42,6 +42,20 @@ Example:
     "clientSecret" : "ca53b8ba928064a6ff64ef1fde762196625ef90a"
 }
 ```
+
+## how to Get client id and client secret?
+
+- 1. Your count **Settings**
+<img width="435" alt="截屏2022-04-17 22 02 21" src="https://user-images.githubusercontent.com/990488/163718037-9bbd4e7d-269a-4774-9a04-c907ebd8c301.png">
+- 2. **Developer Settings**
+<img width="435" alt="截屏2022-04-17 22 03 37" src="https://user-images.githubusercontent.com/990488/163718049-427e8d31-eebc-488a-a6c6-9d3d5a4f9171.png">
+- 3. **New Oauth App**
+<img width="1067" alt="截屏2022-04-17 22 04 17" src="https://user-images.githubusercontent.com/990488/163718061-7bc51ef2-2743-4439-9769-2f188e816b7b.png">
+- 4. 
+<img width="499" alt="截屏2022-04-17 22 05 54" src="https://user-images.githubusercontent.com/990488/163718069-db9d4715-44bc-40fb-acdd-08e1e189bab8.png">
+
+>  ⚠️**Attation:** Your application’s callback URL. Read [OAuth documentation](https://docs.github.com/v3/oauth/) for more information.
+
 ## Then
     Enjoy!
 # **TODO:**
