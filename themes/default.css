@@ -1,11 +1,11 @@
 
 div.card {
-    width: 90%;
+    width: 100%;
     /* padding: 1%; */
     text-align: center;
     border: 1px solid #ffffff;
     border-bottom-color: rgb(79, 197, 0);
-    background-color: #ffffff;
+    background-color: #f6f5f5;
 }
 div.header {
     color: rgb(10, 120, 76);
@@ -48,8 +48,8 @@ div.preview {
     overflow: hidden;
     display: inline-flex;
     width: 100%;
-    padding: 10px;
-    padding-left: 5%;
+    /* padding: 10px; */
+    /* padding-left: 5%; */
 }
 .ownerName {
     color: #ffffff;
@@ -70,4 +70,9 @@ span {
     padding: 20px;
     font-weight: bold;
     font-size: 25px;
+}
+.body_issuse {
+    max-width: 1024px;
+    margin: 0 auto; 
+    padding: 10px;
 }

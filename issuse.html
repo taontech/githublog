@@ -5,56 +5,13 @@
     
 	<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
     <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="themes/default.css" rel="stylesheet">
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script>
     <script src="commonmark.js"></script>
     <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
     <script src="gitalk.min.js" crossorigin="anonymous"></script>
-
-    <style>
-        div.titlestyle {
-            /* margin: auto; */
-            width: 99%;
-            padding: 1%;
-            text-align: left;
-            color: rgb(77, 78, 79);
-            /* border-radius: .45rem;
-            border: 1px solid #dee2e6; */
-            /* box-shadow: 0 .325rem .55rem rgba(0,0,0,.275);
-            background-color: #368869; */
-            font-size: 20px;
-        }
-        .img-title {
-        display: inline;
-        margin: auto;
-        padding: auto;
-        width: 50px;
-    }
-    .ownerline {
-        align-items: center;
-        background-color: lightslategray;
-        height: 50px;
-        overflow: hidden;
-        display: inline-flex;
-        width: 99%;
-        padding: 10px;
-        padding-left: 0px;
-    }
-    .ownerName {
-        color: #ffffff;
-        font-size: 25px;
-        background-color: #70a476;
-        padding-left: 10px;
-        padding-right: 600px;
-        padding-top: 5px;
-    }
-    .span-title {
-        float: left;
-        height: 50px;
-    }
-    .c
-    </style>
     <script>
         const loadScript = (url, onloadFunction) => {
           var newScript = document.createElement("script");
@@ -183,13 +140,15 @@
     </script>
 
 </head>
-<body style="max-width: 1024px;margin: 0 auto; padding: 10px">
+<body class="body_issuse">
     <div class="ownerline" >
         <div>
             <img id="headImg"></img>
         </div>
         
          <span class="ownerName span-title" id="owner"></span>
+         <a href="https://github.com/taontech/githublog" class="githublog_text"> Githublog </a>
+
     </div>
     <div id="title" padding="10px" margin="auto" > 
         <p>GithuBlog</p> 
