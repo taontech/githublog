@@ -105,7 +105,7 @@
                     var des = document.createElement("div")
                     des.className = "preview"
                     var desstring = document.createElement("p")
-                    if issuse.body == null{
+                    if(issuse.body == null){
                         issuse.body = "No description provided."
                     }
                     desstring.innerText = issuse.body.substr(0, 180).replace(/(\r\n|\n|\r)/gm, "")
