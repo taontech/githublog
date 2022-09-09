@@ -64,8 +64,5 @@ Example:
 
 ## Then
     Enjoy!
-# **TODO:**
-- themes
-- highlight
 
 
