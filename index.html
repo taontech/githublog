@@ -106,6 +106,9 @@
                     des.className = "preview"
                     var desstring = document.createElement("p")
                     desstring.innerText = issuse.body.substr(0, 180).replace(/(\r\n|\n|\r)/gm, "")
+                    if desstring.innerText == undefined{
+                        desstring.innerText = "作者没有写内容"
+                    }
                     des.appendChild(desstring)
                     iss.appendChild(des)
 
