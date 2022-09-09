@@ -1,5 +1,5 @@
 # githublog
-A super small blog repo. 
+A super small blog repo. xxxx
 You can use github's issuse to present your blog posts in real time without having to repackage them online. Each of your blogs is visible in real time, and suppurt [***gitalk***](https://github.com/gitalk/gitalk) and [***mermaid***](https://github.com/mermaid-js/mermaid), other users can comment and like at any time.
 
 Demo: 
