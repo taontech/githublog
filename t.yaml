@@ -24,9 +24,7 @@ proxies:
     uuid: 75b5fd63-d188-4669-c2a4-a766dd9c56bd
     alterId: 0
     cipher: auto
-    network: tcp
-    ws-opts:
-      path: /ws    
+    network: tcp  
 proxy-groups:
   - name: all-g
     type: fallback
