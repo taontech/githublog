@@ -1,0 +1,41 @@
+# (HTTP and SOCKS5 in one port)
+mixed-port: 7890
+# RESTful API for clash
+external-controller: 127.0.0.1:9090
+allow-lan: false
+mode: rule
+log-level: warning
+
+proxies:
+  - name: "taontech8080"
+    type: vmess
+    server: taontech.top
+    port: 8080
+    uuid: 36382044-0ff5-4986-e95e-a77258a89ec0
+    alterId: 0
+    cipher: auto
+    network: ws
+    ws-opts:
+      path: /ws
+  - name: "taontech10010"
+    type: vmess
+    server: taontech.top
+    port: 10010
+    uuid: 75b5fd63-d188-4669-c2a4-a766dd9c56bd
+    alterId: 0
+    cipher: auto
+    network: tcp
+    ws-opts:
+      path: /ws    
+proxy-groups:
+  - name: all-g
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      # - taontop-tls
+      - taontech8080
+      - taontech10010
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,all-g
