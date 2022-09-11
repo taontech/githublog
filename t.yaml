@@ -26,7 +26,7 @@ proxies:
     cipher: auto
     network: tcp  
 proxy-groups:
-  - name: all-g
+  - name: taontech
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
@@ -36,4 +36,4 @@ proxy-groups:
       - taontech10010
 rules:
   - GEOIP,CN,DIRECT
-  - MATCH,all-g
+  - MATCH,taontech
