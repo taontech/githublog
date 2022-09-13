@@ -24,7 +24,19 @@ proxies:
     uuid: 75b5fd63-d188-4669-c2a4-a766dd9c56bd
     alterId: 0
     cipher: auto
-    network: tcp  
+    network: tcp
+  - name: "taon-top8081"
+    type: vmess
+    server: taon.top
+    port: 8081
+    uuid: 3ac4db75-d3ea-4e09-af6c-60f32d0543a8
+    alterId: 0
+    cipher: auto
+    # udp: true
+    # tls: true
+    # skip-cert-verify: true
+    # servername: example.com # priority over wss host
+    network: tcp
 proxy-groups:
   - name: taontech
     type: fallback
@@ -34,6 +46,10 @@ proxy-groups:
       # - taontop-tls
       - taontech8080
       - taontech10010
+      - taon-top8081
 rules:
+  - DOMAIN-SUFFIX,lianjia.com,DIRECT
+  - DOMAIN-SUFFIX,realsee.com,DIRECT
+  - DOMAIN-SUFFIX,ke.com,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,taontech
