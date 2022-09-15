@@ -7,6 +7,18 @@ mode: rule
 log-level: warning
 
 proxies:
+  - name: "aws80"
+    type: vmess
+    server: 99.84.128.45
+    port: 80
+    uuid: b400a962-fb24-4b57-a43c-40fcecc795bc
+    alterId: 0
+    cipher: auto
+    network: ws
+    ws-opts:
+      headers:
+        Host: d10lr6uu08hwwj.cloudfront.net
+      path: /ws
   - name: "taontech8080"
     type: vmess
     server: taontech.top
@@ -43,7 +55,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      # - taontop-tls
+      - aws-80
       - taontech8080
       - taontech10010
       # - taon-top8081
