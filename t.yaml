@@ -7,7 +7,7 @@ mode: rule
 log-level: warning
 
 proxies:
-  - name: "aws80"
+  - name: "aws-80"
     type: vmess
     server: 99.84.128.45
     port: 80
