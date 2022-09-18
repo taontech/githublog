@@ -7,22 +7,10 @@ mode: rule
 log-level: warning
 
 proxies:
-  - name: "aws-80"
-    type: vmess
-    server: 99.84.128.45
-    port: 80
-    uuid: b400a962-fb24-4b57-a43c-40fcecc795bc
-    alterId: 0
-    cipher: auto
-    network: ws
-    ws-opts:
-      headers:
-        Host: d10lr6uu08hwwj.cloudfront.net
-      path: /ws
   - name: "taontech8080"
     type: vmess
     server: taontech.top
-    port: 8080
+    port: 8088
     uuid: 36382044-0ff5-4986-e95e-a77258a89ec0
     alterId: 0
     cipher: auto
@@ -32,7 +20,7 @@ proxies:
   - name: "taontech10010"
     type: vmess
     server: taontech.top
-    port: 10010
+    port: 10016
     uuid: 75b5fd63-d188-4669-c2a4-a766dd9c56bd
     alterId: 0
     cipher: auto
@@ -44,10 +32,6 @@ proxies:
     uuid: 3ac4db75-d3ea-4e09-af6c-60f32d0543a8
     alterId: 0
     cipher: auto
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    servername: example.com # priority over wss host
     network: tcp
 proxy-groups:
   - name: taontech
@@ -55,10 +39,9 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - aws-80
       - taontech8080
       - taontech10010
-      # - taon-top8081
+      - taon-top8081
 rules:
   - DOMAIN-SUFFIX,lianjia.com,DIRECT
   - DOMAIN-SUFFIX,realsee.com,DIRECT
