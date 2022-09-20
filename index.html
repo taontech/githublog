@@ -117,7 +117,7 @@
                 });
             }
         }
-        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo + "/"+"issues?per_page=10&page=1",true);
+        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo + "/"+"issues",true);
         xmlhttp.send();
     }
     
