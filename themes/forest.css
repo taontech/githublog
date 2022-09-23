@@ -34,7 +34,7 @@ div.preview {
 .blogContainer {
     /* padding:10px; */
     background-color: rgb(240, 240, 240);
-    opacity: 0.9;
+    /* opacity: 0.9; */
 }
 .img-title {
     display: inline;
