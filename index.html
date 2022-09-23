@@ -2,6 +2,7 @@
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.6, maximum-scale=1.5, user-scalable=no">
     <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="style.css">
     <link href="themes/default.css" rel="stylesheet" id="themecss">
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
@@ -122,10 +123,19 @@
     }
     
 </script>
+<style>
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+</style>
 
 
 <body class="body_issuse">
-
+    <div id="particles-js" width="50%"></div>
     <div class="ownerline" >
         <div>
             <img id="headImg"></img>
@@ -139,6 +149,13 @@
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
     <div class="blogContainer" id="blog">​</div>
+    <!-- scripts -->
+    <script src="particles.min.js"></script>
+    <script src="app.js"></script>
+        
+    
+    
+    
 
 </body>
 </html>
