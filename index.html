@@ -133,12 +133,30 @@
     pointer-events: none;
     z-index: 1;
 }
+#ownerline {
+    align-items: center;
+    background-color: rgb(3, 153, 43);
+    /* opacity: 0.7; */
+    height: 70px;
+    overflow: hidden;
+    display: inline-flex;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* z-index: 1; */
+}
+#blog {
+    padding-top: 40px;
+}
 </style>
 
 
 <body class="body_issuse">
     <div id="particles-js" width="50%"></div>
-    <div class="ownerline" >
+    <div id="ownerline" >
         <div>
             <img id="headImg"></img>
         </div>
@@ -146,11 +164,8 @@
          <a class="ownerName owner-span" id="owner"></a>
          <a href="javascript:location.href='https://github.com/' + config.owner + '/githublog/issues/new'" class="githublog_text" id="githublogText"> + New </a>
     </div>
-    <a class="weatherwidget-io" href="https://forecast7.com/zh/39d96116d30/haidian/" data-label_1="HAIDIAN" data-label_2="WEATHER" data-font="微软雅黑 (Microsoft Yahei)" data-theme="original" >HAIDIAN WEATHER</a>
-    <script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-    </script>
     <div class="blogContainer" id="blog">​</div>
+
     <!-- scripts -->
     <script src="particles.min.js"></script>
     <script src="app.js"></script>

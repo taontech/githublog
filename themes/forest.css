@@ -32,9 +32,7 @@ div.preview {
     margin:auto ;
 }
 .blogContainer {
-    /* padding:10px; */
     background-color: rgb(240, 240, 240);
-    /* opacity: 0.9; */
 }
 .img-title {
     display: inline;
@@ -45,13 +43,18 @@ div.preview {
 .ownerline {
     align-items: center;
     background-color: rgb(3, 153, 43);
-    height: 80px;
+    /* opacity: 0.7; */
+    height: 70px;
     overflow: hidden;
     display: inline-flex;
     width: 100%;
-    /* padding: 10px; */
-    /* padding-left: 5%; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
+
 .ownerName {
     color: #ffffff;
     font-size: 25px;
