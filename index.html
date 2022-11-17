@@ -46,16 +46,20 @@
     //编写url位置
     doGetJSON(configJSON,function(data){
         config = data[document.domain]
-        loadIssuses()
+        loadPages()
+        var pageIndex = getQueryVariable("p");
+        if (pageIndex == false){
+            loadIssuses(0)
+        }else{
+            loadIssuses(pageIndex)
+        }
+        
         // change css
         var css = document.getElementById("themecss")
         css.setAttribute("href","themes/" + config.theme + ".css")
 
     })
-
-
-    function loadIssuses(){
-        // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+    function loadPages(){
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange=function()
@@ -67,15 +71,97 @@
                 // parseAndRender(bb.body)
                 // loadMermaidOnNeed()
                 let img = document.getElementById("headImg")
-                img.setAttribute("src",bb[0].user.avatar_url)
+                img.setAttribute("src",bb.owner.avatar_url)
                 img.className = "img-title"
                 let name = document.getElementById("owner")
-                name.innerText = bb[0].user.login
+                name.innerText = bb.owner.login
                 name.setAttribute("display","inline-block")
-                name.setAttribute("href","https://github.com/"+bb[0].user.login)
+                name.setAttribute("href","https://github.com/"+bb.owner.login)
 
                 let ghText = document.getElementById("githublogText")
-                ghText.setAttribute("herf","https://github.com/"+bb[0].user.login + "/githublog")
+                ghText.setAttribute("herf","https://github.com/"+ bb.owner.login + "/githublog")
+                // name.setAttribute("href",bb[0].repository_url)
+                let issuesCount = bb.open_issues;
+                let pageCount = (issuesCount + 9) / 10;
+                var container = document.getElementById("pages")
+                for(i = 1;i < pageCount; i++){
+                    var page = document.createElement("a")
+                    page.className = "pageLink"
+                    // iss.setAttribute("onclick","window.open('"+"https://taontech.top/issuse.html?iid="+issuse.number+"')")
+                    // iss.setAttribute("onclick","window.open('"+"issuse.html?iid="+issuse.number+"')")
+
+                    // title.herf = issuse.html_url
+                    page.setAttribute("href","/?p="+i)
+                    page.innerText = "    第 "+i+" 页   "
+                    container.appendChild(page)
+                }
+
+                // bb.forEach(issuse => {
+                //     var container = document.getElementById("blog")
+                //     var iss = document.createElement("div")
+                //     iss.className = "card row"
+                //     // iss.setAttribute("onclick","window.open('"+"https://taontech.top/issuse.html?iid="+issuse.number+"')")
+                //     // iss.setAttribute("onclick","window.open('"+"issuse.html?iid="+issuse.number+"')")
+
+                //     var titlediv = document.createElement("div")
+                //     titlediv.className = "header"
+                //     var title = document.createElement("a")
+                //     // title.herf = issuse.html_url
+                //     title.setAttribute("href","issuse.html?iid="+issuse.number)
+                //     title.innerText = issuse.title
+                //     titlediv.appendChild(title)
+
+                //     // titlediv.setAttribute("href",issuse.html_url)
+                //     iss.appendChild(titlediv)
+                    
+                //     var date = document.createElement("div")
+                //     date.className = "container"
+                //     var datestring = document.createElement("p")
+                //     datestring.innerText = issuse.created_at + " 📝" + issuse.comments
+                //     date.appendChild(datestring)
+                //     iss.appendChild(date)
+
+                //     var des = document.createElement("div")
+                //     des.className = "preview"
+                //     var desstring = document.createElement("p")
+                //     if(issuse.body == null){
+                //         issuse.body = "No description provided."
+                //     }
+                //     desstring.innerText = issuse.body.substr(0, 180).replace(/(\r\n|\n|\r)/gm, "")
+                    
+                //     des.appendChild(desstring)
+                //     iss.appendChild(des)
+
+                //     container.appendChild(iss)
+                // });
+            }
+        }
+        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo,true);
+        xmlhttp.send();
+    }
+
+    function loadIssuses(pageIndex){
+        // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var bb = JSON.parse(xmlhttp.responseText)
+                // console.log(bb)
+                // // parseAndRender(bb.body)
+                // // loadMermaidOnNeed()
+                // let img = document.getElementById("headImg")
+                // img.setAttribute("src",bb[0].user.avatar_url)
+                // img.className = "img-title"
+                // let name = document.getElementById("owner")
+                // name.innerText = bb[0].user.login
+                // name.setAttribute("display","inline-block")
+                // name.setAttribute("href","https://github.com/"+bb[0].user.login)
+
+                // let ghText = document.getElementById("githublogText")
+                // ghText.setAttribute("herf","https://github.com/"+bb[0].user.login + "/githublog")
                 // name.setAttribute("href",bb[0].repository_url)
                 
                 bb.forEach(issuse => {
@@ -118,7 +204,7 @@
                 });
             }
         }
-        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo + "/"+"issues?per_page=20&page=1",true);
+        xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+ config.repo + "/"+"issues?per_page=10&page="+pageIndex,true);
         xmlhttp.send();
     }
     
@@ -165,7 +251,9 @@
          <a href="javascript:location.href='https://github.com/' + config.owner + '/githublog/issues/new'" class="githublog_text" id="githublogText"> + New </a>
     </div>
     <div class="blogContainer" id="blog">​</div>
-
+    <div class="pagesContainer" id="pages">
+        ""
+    </div>
     <!-- scripts -->
     <script src="particles.min.js"></script>
     <script src="app.js"></script>
