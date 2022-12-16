@@ -12,9 +12,9 @@
     <script src="commonmark.js"></script>
     <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
     <script src="gitalk.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/rainbow.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/kotlin.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/kotlin.min.js"></script> -->
     <script>
         const loadScript = (url, onloadFunction) => {
           var newScript = document.createElement("script");
@@ -121,10 +121,11 @@
                     loadMermaidOnNeed()
                     
                     // document.addEventListener('DOMContentLoaded', (event) => {
-                        document.querySelectorAll('pre code').forEach((el) => {
+                        hljs.highlightAll();
+                        // document.querySelectorAll('pre code').forEach((el) => {
 
-                            hljs.highlightElement(el);
-                        });
+                        //     hljs.highlightElement(el);
+                        // });
                     // });
 
                     // var id = 
