@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=0.9, minimum-scale=0.8, maximum-scale=1.5, user-scalable=no">
-    <meta http-equiv="Cache-Control" content="max-age=7200">
+    <meta http-equiv="cache-control" content="max-age=7200">
 	<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="themes/default.css" rel="stylesheet" id="themecss">
@@ -97,6 +97,15 @@
             }
             return(false);
         }
+        function getiid(){
+            var url = location.hash; //#
+            url = decodeURI(url);
+            var iid = 0;
+            if (url.indexOf("#") != -1) {
+                iid = url.substr(1);
+            }
+            return iid;
+        }
         function showMarkdown(){
             var writer = new commonmark.HtmlRenderer({ sourcepos: true });
             var xmlhttp;
@@ -146,7 +155,8 @@
                     // gitalk.render('gitalk-container')
                 }
             }
-             xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
+            xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getiid(),true);
+            //  xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
             //xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues/"+getQueryVariable("iid"),true);
 
             xmlhttp.send();

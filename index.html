@@ -175,7 +175,9 @@
                     titlediv.className = "header"
                     var title = document.createElement("a")
                     // title.herf = issuse.html_url
-                    title.setAttribute("href","issuse.html?iid="+issuse.number)
+                    // title.setAttribute("href","issuse.html?iid="+issuse.number)
+                    title.setAttribute("href","issuse.html#"+issuse.number)
+
                     title.innerText = issuse.title
                     titlediv.appendChild(title)
 
