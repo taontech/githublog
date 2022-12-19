@@ -64,7 +64,14 @@
     //编写url位置
     doGetJSON(configJSON,function(data){
         config = data[document.domain]
-        showMarkdown()
+        var bd =  localStorage.getItem(getiid())
+        if(bd == undefined){
+            showMarkdown()
+        }else{
+            showLocalMarkdown(bd)
+        }
+        
+        
                 // change css
         var css = document.getElementById("themecss")
         css.setAttribute("href","themes/" + config.theme + ".css")
@@ -105,6 +112,34 @@
                 iid = url.substr(1);
             }
             return iid;
+        }
+        function showLocalMarkdown(bdStr){
+            var bd = JSON.parse(bdStr)
+            let img = document.getElementById("headImg")
+            img.setAttribute("src",bd.user.avatar_url)
+            img.className = "img-title"
+            let name = document.getElementById("owner")
+            name.innerText = bd.user.login
+            name.setAttribute("display","inline-block")
+
+            var title = document.getElementById("title")
+            // title.className = "titlestyle"
+            title.textContent = bd.title
+            parseAndRender(bd.body)
+            loadMermaidOnNeed()
+            hljs.highlightAll();
+            var gitalk = new Gitalk({
+                        id: bd.id,
+                        number: bd.number,
+                        title: bd.title,
+                        clientID: config.clientId,
+                        clientSecret: config.clientSecret,
+                        repo: config.repo,
+                        owner: config.owner,
+                        admin: [config.owner],
+                        body: decodeURI(location.href)
+                    });
+            gitalk.render('gitalk-container')
         }
         function showMarkdown(){
             var writer = new commonmark.HtmlRenderer({ sourcepos: true });

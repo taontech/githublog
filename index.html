@@ -199,6 +199,9 @@
                     }
                     desstring.innerText = issuse.body.substr(0, 180).replace(/(\r\n|\n|\r)/gm, "")
                     
+                    // 缓存
+                    localStorage.setItem(issuse.number,JSON.stringify(issuse))
+
                     des.appendChild(desstring)
                     iss.appendChild(des)
 
