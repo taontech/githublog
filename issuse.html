@@ -65,11 +65,11 @@
     doGetJSON(configJSON,function(data){
         config = data[document.domain]
         var bd =  localStorage.getItem(getiid())
-        if(bd == undefined){
+        // if(bd == undefined){
             showMarkdown()
-        }else{
+        // }else{
             showLocalMarkdown(bd)
-        }
+        // }
         
         
                 // change css
@@ -149,9 +149,11 @@
             {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
+                   
                     var bb = JSON.parse(xmlhttp.responseText)
                     console.log(bb.body)
-
+                    // 更新local storage
+                    localStorage.setItem(bb.number,xmlhttp.responseText)
                     let img = document.getElementById("headImg")
                     img.setAttribute("src",bb.user.avatar_url)
                     img.className = "img-title"
