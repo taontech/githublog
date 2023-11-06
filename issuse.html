@@ -30,7 +30,7 @@
       
         // mermaid loader by ttys3.dev
         const loadMermaidOnNeed = () => {
-            loadScript('mermaid.min.js', () => {
+            loadScript('mermaid10.min.js', () => {
               document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #ffffff !important; }</style>`);
               console.log("mermaid init done");
               mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
