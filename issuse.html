@@ -11,7 +11,8 @@
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script>
-    <script src="commonmark.js"></script>
+    <!-- <script src="commonmark.js"></script> -->
+    <script src="showdown.min.js"></script>
     <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
     <script src="gitalk.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="obsidian.min.css">
@@ -86,16 +87,22 @@
         var writer = new commonmark.HtmlRenderer({ sourcepos: true });
 
         var render = function(parsed) {
-            if (parsed === undefined) {
-                return;
-            }
-            var startTime = new Date().getTime();
-            var result = writer.render(parsed);
-            document.getElementById("iss-container").innerHTML=result;
+            // if (parsed === undefined) {
+            //     return;
+            // }
+            // var startTime = new Date().getTime();
+            // var result = writer.render(parsed);
+            // document.getElementById("iss-container").innerHTML=result;
+            // var converter = new showdown.Converter();
+            // var text      = parsed;
+            // document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
         };
         var parseAndRender = function(text) {
-            var parsed = reader.parse(text);
-            render(parsed);
+            // var parsed = reader.parse(text);
+            // render(parsed);
+            var converter = new showdown.Converter();
+            
+            document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
         };
         function getQueryVariable(variable)
         {
