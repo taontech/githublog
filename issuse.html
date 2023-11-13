@@ -83,8 +83,8 @@
 
     </script>
 	<script>
-        var reader = new commonmark.Parser();
-        var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+        // var reader = new commonmark.Parser();
+        // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
 
         var render = function(parsed) {
             // if (parsed === undefined) {
@@ -152,7 +152,7 @@
             gitalk.render('gitalk-container')
         }
         function showMarkdown(){
-            var writer = new commonmark.HtmlRenderer({ sourcepos: true });
+            // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
