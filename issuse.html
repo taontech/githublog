@@ -101,7 +101,9 @@
             // var parsed = reader.parse(text);
             // render(parsed);
             var converter = new showdown.Converter();
-            
+            converter.setFlavor('github');
+            // converter.setOption('tables', true);
+            // converter.setOption('literalMidWordAsterisks', true)
             document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
         };
         function getQueryVariable(variable)
