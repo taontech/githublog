@@ -13,11 +13,39 @@
     <script src="lodash.min.js"></script>
     <!-- <script src="commonmark.js"></script> -->
     <script src="showdown.min.js"></script>
+    <!-- <script src="showdown-table.min.js"></script> -->
     <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
     <script src="gitalk.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="obsidian.min.css">
     <script src="highlight.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/kotlin.min.js"></script> -->
+    <style type="text/css">
+        table
+        {
+        border-collapse: collapse;
+        margin: 0 auto;
+        text-align: center;
+        }
+        table td, table th
+        {
+        border: 1px solid #cad9ea;
+        color: #666;
+        height: 30px;
+        }
+        table thead th
+        {
+        background-color: #CCE8EB;
+        width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+        background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+        background: #F5FAFA;
+        }
+        </style>
     <script>
         const loadScript = (url, onloadFunction) => {
           var newScript = document.createElement("script");
@@ -102,7 +130,7 @@
             // render(parsed);
             var converter = new showdown.Converter();
             converter.setFlavor('github');
-            // converter.setOption('tables', true);
+            converter.setOption('tables', true);
             // converter.setOption('literalMidWordAsterisks', true)
             document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
         };
