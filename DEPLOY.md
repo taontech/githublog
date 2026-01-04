@@ -7,10 +7,11 @@ This site is designed to be a static website, making it perfect for **Cloudflare
 1.  Log in to the [Cloudflare Dashboard](https://dash.cloudflare.com/).
 2.  Go to **Workers & Pages** -> **Create Application** -> **Pages**.
 3.  Click **Connect to Git** and select your `githublog` repository.
-4.  **Build Settings**:
+4.  **Build Settings** (Crucial Step):
     *   **Framework Preset**: None (Static HTML)
-    *   **Build Command**: (Leave empty, or `echo "No build needed"`)
-    *   **Build Output Directory**: `/` (or leaves as root)
+    *   **Build Command**: `exit 0` (or leave completely empty)
+    *   **Build Output Directory**: `/` (root)
+        *   *Note: Do NOT enter `npx wrangler deploy` here. That command is for Workers.*
 5.  Click **Save and Deploy**.
 
 Cloudflare will automatically deploy your site whenever you push changes to GitHub.
