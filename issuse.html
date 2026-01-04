@@ -1,150 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, minimum-scale=0.8, maximum-scale=1.5, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="cache-control" content="max-age=7200">
-    <meta name="theme-color" content="#03992b">
-	<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+    <meta name="theme-color" content="#ffffff">
+    <title>GithuBlog | Issue Detail</title>
+
+    <!-- Styles -->
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="themes/default.css" rel="stylesheet" id="themecss">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Third-party Styles -->
+    <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="obsidian.min.css">
+
+    <!-- Scripts -->
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="lodash.min.js"></script>
-    <!-- <script src="commonmark.js"></script> -->
     <script src="showdown.min.js"></script>
-    <!-- <script src="showdown-table.min.js"></script> -->
-    <link rel="stylesheet" href="gitalk.css" crossorigin="anonymous">
     <script src="gitalk.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="obsidian.min.css">
     <script src="highlight.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/languages/kotlin.min.js"></script> -->
-    <style type="text/css">
-        table
-        {
-        border-collapse: collapse;
-        margin: 0 auto;
-        text-align: center;
-        }
-        table td, table th
-        {
-        border: 1px solid #d8d8d8;
-        color: #666;
-        height: 30px;
-        }
-        table thead th
-        {
-        background-color: #e0e0e0;
-        width: 100px;
-        }
-        table tr:nth-child(odd)
-        {
-        background: #fff;
-        }
-        table tr:nth-child(even)
-        {
-        background: #fbfbfb;
-        }
-        </style>
+
     <script>
+        // Dynamic mermaid loader
         const loadScript = (url, onloadFunction) => {
-          var newScript = document.createElement("script");
-          newScript.onerror =  (oError) => {
-            throw new URIError("The script " + oError.target.src + " didn't load correctly.");
-          };
-          if (onloadFunction) { newScript.onload = onloadFunction; }
-          document.head.insertAdjacentElement('beforeend', newScript);
-          newScript.src = url;
+            var newScript = document.createElement("script");
+            newScript.onerror = (oError) => {
+                throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+            };
+            if (onloadFunction) { newScript.onload = onloadFunction; }
+            document.head.insertAdjacentElement('beforeend', newScript);
+            newScript.src = url;
         }
-      
-        // mermaid loader by ttys3.dev
+
         const loadMermaidOnNeed = () => {
             loadScript('mermaid10.min.js', () => {
-              document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #ffffff !important; }</style>`);
-              console.log("mermaid init done");
-              mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
-              window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+                document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #ffffff !important; }</style>`);
+                console.log("mermaid init done");
+                mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+                window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
             })
         }
-    
-    
-      </script>
+    </script>
+
     <script>
         var config;
-        function createxmlHttpRequest() {
-        if(window.ActiveXObject) {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-        } else if(window.XMLHttpRequest) {
-            xmlHttp = new XMLHttpRequest();
-        }
-    }
 
-    function doGetJSON(url,fun) {
-        createxmlHttpRequest();
-        xmlHttp.open("GET", url);
-        xmlHttp.send(null);
-        xmlHttp.onreadystatechange = function() {
-            if((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
-                fun&fun(JSON.parse(xmlHttp.responseText));
+        // XHR Helper
+        function doGetJSON(url, successHandler, errorHandler) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        successHandler(JSON.parse(xhr.responseText));
+                    } else if (errorHandler) {
+                        errorHandler(xhr);
+                    }
+                }
+            };
+            xhr.send(null);
+        }
+
+        // Initialize
+        doGetJSON('config.json', function (data) {
+            config = data[document.domain] || data['taontech.github.io'] || data['127.0.0.1'];
+
+            if (config) {
+                // Initialize Auth
+                Auth.init();
+
+                // Load Issue Content
+                var bd = localStorage.getItem(getiid());
+                // Always try to fetch fresh if not explicit offline mode, but honoring existing logic
+                // If local storage has it, render it first then maybe verify? 
+                // Existing logic: if(bd == undefined) showMarkdown() else showLocalMarkdown(bd)
+                // Let's stick to existing optimization but make it robust
+                if (bd) {
+                    showLocalMarkdown(bd);
+                } else {
+                    showMarkdown(); // Fetch from API
+                }
+
+                // Update Edit Link
+                var edit = document.getElementById("edit_text");
+                if (edit) edit.href = `https://github.com/${config.owner}/${config.repo}/issues/${getiid()}`;
             }
-        }
-    }
+        });
 
-    var configJSON = 'config.json'
-    //编写url位置
-    doGetJSON(configJSON,function(data){
-        config = data[document.domain]
-        var bd =  localStorage.getItem(getiid())
-        // if(bd == undefined){
-            showMarkdown()
-        // }else{
-            showLocalMarkdown(bd)
-        // }
-        
-        
-                // change css
-        var css = document.getElementById("themecss")
-        css.setAttribute("href","themes/" + config.theme + ".css")
-        var edit = document.getElementById("edit_text")
-        edit.setAttribute("href","https://github.com/taontech/githublog/issues/"+getiid())
-    })
+        // Auth placeholder (assuming Auth is loaded via auth.js or we need access to it)
+        // Since auth.js is not imported yet, let's allow basic page function without full auth integration for commenting for now,
+        // OR import auth.js. I will import auth.js in the body.
 
     </script>
-	<script>
-        // var reader = new commonmark.Parser();
-        // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
 
-        var render = function(parsed) {
-            // if (parsed === undefined) {
-            //     return;
-            // }
-            // var startTime = new Date().getTime();
-            // var result = writer.render(parsed);
-            // document.getElementById("iss-container").innerHTML=result;
-            // var converter = new showdown.Converter();
-            // var text      = parsed;
-            // document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
-        };
-        var parseAndRender = function(text) {
-            // var parsed = reader.parse(text);
-            // render(parsed);
+    <script>
+        var parseAndRender = function (text) {
             var converter = new showdown.Converter();
             converter.setFlavor('github');
             converter.setOption('tables', true);
-            // converter.setOption('literalMidWordAsterisks', true)
             document.getElementById("iss-container").innerHTML = converter.makeHtml(text);
         };
-        function getQueryVariable(variable)
-        {
+
+        function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-                    var pair = vars[i].split("=");
-                    if(pair[0] == variable){return pair[1];}
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
             }
-            return(false);
+            return (false);
         }
-        function getiid(){
+
+        function getiid() {
             var url = location.hash; //#
             url = decodeURI(url);
             var iid = 0;
@@ -153,116 +124,171 @@
             }
             return iid;
         }
-        function showLocalMarkdown(bdStr){
-            var bd = JSON.parse(bdStr)
-            let img = document.getElementById("headImg")
-            img.setAttribute("src",bd.user.avatar_url)
-            img.className = "img-title"
-            let name = document.getElementById("owner")
-            name.innerText = bd.user.login
-            name.setAttribute("display","inline-block")
 
-            var title = document.getElementById("title")
-            // title.className = "titlestyle"
-            title.textContent = bd.title
-            parseAndRender(bd.body)
-            loadMermaidOnNeed()
+        function renderPageElements(data) {
+            // Header Info
+            let img = document.getElementById("headImg");
+            if (data.user) img.src = data.user.avatar_url;
+            else if (data.owner) img.src = data.owner.avatar_url; // Handle repo vs issue object diffs if any
+
+            let name = document.getElementById("owner");
+            if (data.user) name.innerText = data.user.login;
+
+            // Title
+            var title = document.getElementById("issue-title");
+            title.innerText = data.title;
+
+            // Body
+            parseAndRender(data.body);
+            loadMermaidOnNeed();
             hljs.highlightAll();
-            var gitalk = new Gitalk({
-                        id: bd.id,
-                        number: bd.number,
-                        title: bd.title,
-                        clientID: config.clientId,
-                        clientSecret: config.clientSecret,
-                        repo: config.repo,
-                        owner: config.owner,
-                        admin: [config.owner],
-                        body: decodeURI(location.href)
-                    });
-            gitalk.render('gitalk-container')
-        }
-        function showMarkdown(){
-            // var writer = new commonmark.HtmlRenderer({ sourcepos: true });
-            var xmlhttp;
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function()
-            {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                {
-                   
-                    var bb = JSON.parse(xmlhttp.responseText)
-                    console.log(bb.body)
-                    // 更新local storage
-                    localStorage.setItem(bb.number,xmlhttp.responseText)
-                    let img = document.getElementById("headImg")
-                    img.setAttribute("src",bb.user.avatar_url)
-                    img.className = "img-title"
-                    let name = document.getElementById("owner")
-                    name.innerText = bb.user.login
-                    name.setAttribute("display","inline-block")
 
-                    var title = document.getElementById("title")
-                    // title.className = "titlestyle"
-                    title.textContent = bb.title
-                    parseAndRender(bb.body)
-                    loadMermaidOnNeed()
-                    
-                    // document.addEventListener('DOMContentLoaded', (event) => {
-                        hljs.highlightAll();
-                        // document.querySelectorAll('pre code').forEach((el) => {
-
-                        //     hljs.highlightElement(el);
-                        // });
-                    // });
-
-                    // var id = 
-                    var gitalk = new Gitalk({
-                        id: bb.id,
-                        number: bb.number,
-                        title: bb.title,
-                        clientID: config.clientId,
-                        clientSecret: config.clientSecret,
-                        repo: config.repo,
-                        owner: config.owner,
-                        admin: [config.owner],
-                        body: decodeURI(location.href)
-                    });
-                    gitalk.render('gitalk-container')
-
-                    // gitalk.render('gitalk-container')
-                }
+            // Gitalk
+            if (typeof Gitalk !== 'undefined') {
+                var gitalk = new Gitalk({
+                    id: data.id, // Ensure ID is string/unique. GitHub Issue ID is unique.
+                    number: data.number,
+                    title: data.title,
+                    clientID: config.clientId,
+                    clientSecret: config.clientSecret,
+                    repo: config.repo,
+                    owner: config.owner,
+                    admin: [config.owner],
+                    body: decodeURI(location.href)
+                });
+                gitalk.render('gitalk-container');
             }
-            xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getiid(),true);
-            //  xmlhttp.open("GET","https://api.github.com/repos/"+config.owner+"/"+config.repo+"/issues/"+getQueryVariable("iid"),true);
-            //xmlhttp.open("GET","https://api.github.com/repos/taontech/githublog/issues/"+getQueryVariable("iid"),true);
-
-            xmlhttp.send();
         }
-    
+
+        function showLocalMarkdown(bdStr) {
+            var bd = JSON.parse(bdStr);
+            renderPageElements(bd);
+        }
+
+        function showMarkdown() {
+            var url = `https://api.github.com/repos/${config.owner}/${config.repo}/issues/${getiid()}`;
+            doGetJSON(url, function (bb) {
+                // console.log(bb)
+                localStorage.setItem(bb.number, JSON.stringify(bb)); // Save complete object, note: previous code saved responseText
+                renderPageElements(bb);
+            });
+        }
     </script>
 
+    <!-- Additional styles for issue content -->
+    <style>
+        .issue-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .issue-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 2rem;
+            color: #202124;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 20px;
+        }
+
+        /* Markdown Content Adjustments */
+        #iss-container img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        #iss-container pre {
+            background: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+        }
+
+        #iss-container blockquote {
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            padding: 0 1em;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+        }
+    </style>
 </head>
-<body class="body_issuse">
-    <div class="ownerline" >
-        <div>
-            <img id="headImg"></img>
+
+<body>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header / Navbar -->
+    <header id="ownerline">
+        <div class="brand-area">
+            <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+                <img id="headImg" src="backtohome.png" alt="Avatar">
+                <span class="ownerName" id="owner">GithuBlog</span>
+            </a>
         </div>
-        
-         <span class="ownerName owner-span" id="owner"></span>
-         <a href="https://github.com/taontech/githublog" class="githublog_text" id="edit_text"> Edit </a>
 
-    </div>
-    <div id="title" class="titlestyle" > 
-        <p>GithuBlog</p> 
-    </div>
-	<div id = "iss-container" class="iss-container" style="margin-top:30px; width: 100%;">
-	</div> 
-    <a href="javascript:history.go(-1)"> 
-        <img src="backtohome.png"></img>
-    </a>
-    <a href="https://ipw.cn/ipv6webcheck/?site=ipw.cn" title="本站支持IPv6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
+        <div class="auth-area">
+            <a href="#" class="auth-btn" id="edit_text" target="_blank"
+                style="background-color: white; color: var(--text-secondary); border: 1px solid var(--border-color);">
+                Edit on GitHub
+            </a>
+            <div id="user-display" class="user-display" style="display:none;">
+                <img id="user-avatar-login" class="user-avatar-small" src="" alt="User">
+                <span id="user-name-login"></span>
+                <a href="javascript:Auth.logout()" class="auth-btn"
+                    style="border:none; color: #ff6b6b; padding: 0 8px;">Logout</a>
+            </div>
 
+            <a href="javascript:Auth.login()" class="auth-btn" id="login-btn">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="blogContainer article-mode">
+        <!-- Back Button -->
+        <div style="margin-bottom: 20px;">
+            <a href="/" class="pageLink" style="display:inline-flex; align-items:center; gap:5px;">
+                &larr; Back to Home
+            </a>
+        </div>
+
+        <!-- Issue Card -->
+        <div class="issue-card">
+            <div id="issue-title" class="issue-title">Loading...</div>
+            <div id="iss-container"></div>
+        </div>
+
+        <!-- Comments -->
+        <div id="gitalk-container" class="comments-section"></div>
+    </div>
+
+    <!-- Footer Badge -->
+    <div class="footer-badge">
+        <a href="https://ipw.cn/ipv6webcheck/?site=ipw.cn" title="IPv6 Ready" target='_blank'>
+            <img style='display:inline-block;vertical-align:middle; height: 30px;' alt="IPv6 Ready"
+                src="https://static.ipw.cn/icon/ipv6-s1.svg">
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="particles.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script> <!-- loads particles -->
+
+    <script>
+        // Init Auth if config managed to load it, but usually app.js/particles finishes last
+        // Additional auth init check if needed
+        window.addEventListener('load', function () {
+            if (typeof Auth !== 'undefined' && typeof config !== 'undefined') {
+                Auth.init();
+            }
+        });
+    </script>
 </body>
-<div id="gitalk-container"></div>
 
 </html>
